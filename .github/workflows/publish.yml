@@ -1,0 +1,27 @@
+name: Publish
+
+on:
+  workflow_call:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Build project
+        run: ./echodate.sh
+
+      - name: Upload to Onion
+        uses: ./.github/actions/upload-to-onion
+        with:
+          source_dir: ./dist/
+          destination_dir: /home/pi/gh-destination
+          ssh_user: ${{ secrets.SSH_USER }}
+          ssh_privatekey: ${{ secrets.SSH_PRIVATEKEY }}
+          onion_host: ${{ secrets.ONION_HOST }}
+          onion_client_auth_privatekey: ${{ secrets.ONION_CLIENT_AUTH_PRIVATEKEY }}

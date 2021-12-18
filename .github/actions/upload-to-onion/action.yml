@@ -1,0 +1,30 @@
+name: 'Upload to onion service'
+description: 'Uploads files to an onion service using scp'
+inputs:
+  source_dir:
+    required: true
+    description: 'Local source directory.'
+
+  destination_dir:
+    required: true
+    description: 'Remote destination directory.'
+  
+  ssh_user: 
+    required: true
+    description: 'Username used for remote authentication.'
+  
+  ssh_privatekey:
+    required: false
+    description: 'Private key used for remote authentication. Passphrase authentication is (at the moment) not supported.'
+  
+  onion_host:
+    required: true
+    description: 'Onion hostname of the remote server WITHOUT the .onion suffix.'
+      
+  onion_client_auth_privatekey:
+    required: false
+    description: 'If Client Authorization is active on the onion service, provide a valid private key.'
+  
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
