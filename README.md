@@ -1,4 +1,12 @@
+This proof of concept was successful. It's now been turned into a Workflow
+Action available on the Github Marketplace.
+
+https://github.com/marketplace/actions/upload-to-onion-service
+
+---
+
 # Github Workflow Onion Proof of Concept
+
 
 Proof of concept for a github workflow which pushes files onto a remote ssh
 server over Tor.
